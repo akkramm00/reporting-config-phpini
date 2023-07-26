@@ -75,4 +75,33 @@ $foo = 42 ;
     echo "Mmmm, impossibled'accéder à la base de données. Veuilez réessayer plus tard." .PHP_EOL;
  }
  // L'execution continue ici
+
+ //__________________________________________________________________________________________________________________//
+
+ //gestion d'xception global :
+  
+ set_exception_handler(function(Exception $e){
+    //effectuer des actions avant de mettre fin à l'execution.
+    //Gérer l'exception ici et " échouer gracieusement"
+    echo" Une exception a été détéctée. Nous mettons fin au programme.". PHP_EOL;
+ });
+ throw new Exception();
+ // Ce code ne sera jamais éxécuté
+ $foo = 42 ;
+
+
+ // restaurer aussi le gestionaire dexception global
+
+ //Définition d'un gestionnaire d'exception global
+  set_exception_handler(function(Exception $e) {
+    // Effectuer des actions avant de mettre fin à l'éxécution.
+    //Gérer l'eception ici et "echouer gracieusement"
+    echo "une Exceptiona été détectée. Nous mettonsfin au programme.".PHP_EOL;
+  });
+  //votre code ici...
+
+  //A la fin 
+  restore_exception_handler();
+  
+
 ?>
