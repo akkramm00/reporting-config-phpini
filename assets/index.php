@@ -35,4 +35,15 @@ set_error_handler(function($errno, $errstr, $errfile, $errline) {
 
 //Restauration du gestionnaire d'erreur précédent
 restore_error_handler();
+// _____________________________________________________________________________________________________________________________//
+
+
+// LES EXCEPTIONS ?LES LANCER ET LES ATTRAPER .......
+
+$exception = new Exception('Attention, le programme rencontre une situation imprévue' , 42);
+// pour acceder au message et au code , on utilise les methodes getMessage() et getCode() prévue pour cet  effet:Code
+
+$exception->getMessage();// Attention , le programme rencontre une situation imprévue
+
+$exception->getCode(); //42
 ?>
