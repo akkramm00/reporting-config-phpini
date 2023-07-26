@@ -46,4 +46,33 @@ $exception = new Exception('Attention, le programme rencontre une situation impr
 $exception->getMessage();// Attention , le programme rencontre une situation imprévue
 
 $exception->getCode(); //42
+
+//_______________________________________________________________________________________________________________________________//
+// Lancer une exception :
+// Nouus devons lance r ds exceptions lorsque notre code rencontre des situations imprévues .
+// pour cet effet , oon délègue la gestion de la situation a lutilisateur de notre code.,c'est a lui de sovoir ce qu'il y' a de mieux a faire dans ce cas 
+// on n'a aucuneraison d'imposer aux autres une m   nière d el   gérer, comme d'arréter l'execution du programme.
+
+// pour Lancer une exception , on utilise le mot-clé " throw" ;
+
+throw new exception('Attention, le proogramme rencontre une situation imprévue');
+// C code ne sera exécuté
+$foo = 42 ;
+
+// ATTRAPER DES EXCEPTIONS :
+ // Le code suivant montre une tentative de connexion à une base de données MySQL quiéchoue. Au lieu e récupérer la stacktrace 
+ //et aficher des détails sur notre système à l'utilisateur, on affiche un message user-friendly:
+
+
+ try {
+    // Tentative de connexion à une base de données MySQL avec le module PDO (PHP Data Object)
+    $pdo = new PDO('mysql://host=foo;dbname=bar');
+ }catch(Exception $e){
+    //Inspecter l'exception
+    $code = $e-> getCode();
+    $message = $e->getMessage();
+    // Afficher un message user-fiendly
+    echo "Mmmm, impossibled'accéder à la base de données. Veuilez réessayer plus tard." .PHP_EOL;
+ }
+ // L'execution continue ici
 ?>
