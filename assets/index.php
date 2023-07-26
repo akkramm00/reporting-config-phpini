@@ -13,4 +13,13 @@
 require 'foo.php' ;
 echo "<p> Cette instruction sera-t-elle visible ? ? </p>" . PHP_EOL;
 
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+    echo "Par contre, fopen, cmme tout le monde ,reporte bien ses erreurs auprès du gestionnaire d\erreurs globl. " .PHP_EOL;
+});
+try {
+    fopen('foo.php', 'r');
+}catch(Error $e) {
+    echo 'Vous ne verrez jamais ce message car foopen n\'émét pas d\'erreurs de type Error! L\'erreur est déclenchée de manière classique' .PHP_EOL;
+}
+
 ?>
