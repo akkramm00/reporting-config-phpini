@@ -96,7 +96,7 @@ $foo = 42 ;
   set_exception_handler(function(Exception $e) {
     // Effectuer des actions avant de mettre fin à l'éxécution.
     //Gérer l'eception ici et "echouer gracieusement"
-    echo "une Exceptiona été détectée. Nous mettonsfin au programme.".PHP_EOL;
+    echo "une Exception a été détectée. Nous mettonsfin au programme.".PHP_EOL;
   });
   //votre code ici...
 
@@ -117,5 +117,18 @@ $foo = 42 ;
  set_exception_handler(function(Throwable $e){
     echo "Une exception a été détéctée. Nous mettons fin au programme. " .PHP_EOL;
  });
- 
+
+ // Définition d'un gestionnaire d'erreurs global
+ set_error_handler(function($errno, $errstr, $errfile, $errline) {
+    // Transformer l'erreur en Exception avec la classe dédiée ErrorException
+    echo "Une erreur a été détéctée. On la relance sous formed\'Exception !" .
+    throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
+ });
+
+ //Test : lancer  une erreur avec l'une des deux instructions suivantes
+ // throw new Error();
+ trigger_error('oups ! ,E_USER_WARNING');
+ // ce code ne  sera jamais excécuté...
+ echo"42 !" .PHP_EOL;
+
 ?>
