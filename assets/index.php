@@ -102,6 +102,20 @@ $foo = 42 ;
 
   //A la fin 
   restore_exception_handler();
-  
 
+  //___________________________________________________________________________________________________________________//
+
+  //Transformer les erreurs en exception
+ // Mais que faire de toutes ces fonctions PHP qui gébérent encore des erreurs? Et que faire des erreurs Fatales ? 
+ //Eh bien, comme on l'a vu, depuis PHP7 , la plupart d'entre elles lancent des objets de type Error. 
+ // Une manière populaire de gérer les objets Error et les Exception est de récupérer l'objet Error et de le relancer 
+ // en tant que Exception. Cette conversion permet de pouvoir travailler principalement avec l'interface des exceptions uniquement.
+ // Ou transformer les Error en Exceptionn? Dans notre gestionnaire d'ereurs global, bien sur 
+
+
+ //  Définition d'un gestionnaire dexception global
+ set_exception_handler(function(Throwable $e){
+    echo "Une exception a été détéctée. Nous mettons fin au programme. " .PHP_EOL;
+ });
+ 
 ?>
